@@ -21,36 +21,36 @@
 
 void* load_mpt_model(const char *fname, int n_threads) {
     // load the model
-    auto gptj = llmodel_mpt_create();
+    auto mpt = llmodel_mpt_create();
 
-    llmodel_setThreadCount(gptj,  n_threads);
-    if (!llmodel_loadModel(gptj, fname)) {
+    if (!llmodel_loadModel(mpt, fname)) {
         return nullptr;
     }
+    llmodel_setThreadCount(mpt,  n_threads);
 
-    return gptj;
+    return mpt;
 }
 
 void* load_llama_model(const char *fname, int n_threads) {
     // load the model
-    auto gptj = llmodel_llama_create();
+    auto llama = llmodel_llama_create();
 
-    llmodel_setThreadCount(gptj,  n_threads);
-    if (!llmodel_loadModel(gptj, fname)) {
+    if (!llmodel_loadModel(llama, fname)) {
         return nullptr;
     }
+    llmodel_setThreadCount(llama,  n_threads);
 
-    return gptj;
+    return llama;
 }
 
 void* load_gptj_model(const char *fname, int n_threads) {
     // load the model
     auto gptj = llmodel_gptj_create();
 
-    llmodel_setThreadCount(gptj,  n_threads);
     if (!llmodel_loadModel(gptj, fname)) {
         return nullptr;
     }
+    llmodel_setThreadCount(gptj,  n_threads);
 
     return gptj;
 }
